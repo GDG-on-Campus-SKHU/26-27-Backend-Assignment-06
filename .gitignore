@@ -18,4 +18,13 @@ out/
 !**/src/test/**/out/
 .idea/
 
+# VS Code / Eclipse
+.vscode/
+.settings/
+.project
+.classpath
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
 HELP.md
