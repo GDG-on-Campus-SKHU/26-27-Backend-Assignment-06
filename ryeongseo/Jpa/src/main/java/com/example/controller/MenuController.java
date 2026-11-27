@@ -1,9 +1,10 @@
 package com.example.controller;
 
-
 import com.example.dto.MenuInfoResponseDto;
 import com.example.dto.MenuSaveRequestDto;
+import com.example.dto.MenuUpdateRequestDto;
 import com.example.service.MenuService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,8 @@ public class MenuController {
     private final MenuService menuService;
 
     @PostMapping
-    public ResponseEntity<MenuInfoResponseDto> saveMenu(@RequestBody MenuSaveRequestDto menuSaveRequestDto) {
+    public ResponseEntity<MenuInfoResponseDto> saveMenu(
+            @Valid @RequestBody MenuSaveRequestDto menuSaveRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(menuService.saveMenu(menuSaveRequestDto));
     }
@@ -40,9 +42,9 @@ public class MenuController {
     @PatchMapping("/{menuId}")
     public ResponseEntity<MenuInfoResponseDto> updateMenu(
             @PathVariable Long menuId,
-            @RequestBody MenuSaveRequestDto menuSaveRequestDto) {
+            @Valid @RequestBody MenuUpdateRequestDto menuUpdateRequestDto) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(menuService.updateMenu(menuId, menuSaveRequestDto));
+                .body(menuService.updateMenu(menuId, menuUpdateRequestDto));
     }
 
     @DeleteMapping("/{menuId}")

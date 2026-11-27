@@ -1,10 +1,10 @@
 package com.example.service;
 
-
 import com.example.domain.Category;
 import com.example.domain.Menu;
 import com.example.dto.MenuInfoResponseDto;
 import com.example.dto.MenuSaveRequestDto;
+import com.example.dto.MenuUpdateRequestDto;
 import com.example.repository.CategoryRepository;
 import com.example.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
@@ -45,12 +45,12 @@ public class MenuService {
     }
 
     @Transactional
-    public MenuInfoResponseDto updateMenu(Long menuId, MenuSaveRequestDto menuSaveRequestDto) {
+    public MenuInfoResponseDto updateMenu(Long menuId, MenuUpdateRequestDto menuUpdateRequestDto) {
         Menu menu = menuRepository.findById(menuId)
                 .orElseThrow(() -> new IllegalArgumentException("요청하신 메뉴 정보를 찾을 수 없습니다."));
 
-        menu.update(menuSaveRequestDto.name(),
-                menuSaveRequestDto.price());
+        menu.update(menuUpdateRequestDto.name(),
+                menuUpdateRequestDto.price());
 
         return MenuInfoResponseDto.from(menu);
     }

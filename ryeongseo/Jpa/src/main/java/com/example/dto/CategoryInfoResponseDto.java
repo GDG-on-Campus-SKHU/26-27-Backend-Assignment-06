@@ -1,6 +1,5 @@
 package com.example.dto;
 
-
 import com.example.domain.Category;
 import lombok.Builder;
 
